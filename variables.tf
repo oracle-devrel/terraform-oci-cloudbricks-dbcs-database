@@ -120,6 +120,11 @@ variable "node_count" {
   description = "Amount of nodes in DB"
 }
 
+variable "dbcs_nsg_name" {
+  description = "Display Name of an optional Network Security Group"
+  default     = ""
+}
+
 variable "fault_domains" {
   description = "Fault Domains"
   default     = ""

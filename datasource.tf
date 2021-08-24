@@ -70,7 +70,15 @@ data "oci_core_private_ip" "DBVIPIP" {
   private_ip_id = oci_database_db_system.DBSystem.vip_ids[count.index]
 }
 
+data "oci_core_network_security_groups" "NSG" {
+  compartment_id = local.nw_compartment_id
+  vcn_id         = local.vcn_id
 
+  filter {
+    name   = "display_name"
+    values = ["${var.dbcs_nsg_name}"]
+  }
+}
 
 
 locals {
@@ -103,4 +111,7 @@ locals {
   
   # VCN OCID Local Accessor 
   vcn_id = data.oci_core_vcns.VCN.virtual_networks[0].id
+
+  # NSG OCID Local Accessor
+  nsg_id = length(data.oci_core_network_security_groups.NSG.network_security_groups) > 0 ? lookup(data.oci_core_network_security_groups.NSG.network_security_groups[0], "id") : ""
 }

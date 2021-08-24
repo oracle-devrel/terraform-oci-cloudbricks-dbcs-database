@@ -43,6 +43,7 @@ resource "oci_database_db_system" "DBSystem" {
   data_storage_size_in_gb = var.data_storage_size_in_gb
   license_model           = var.license_model
   node_count              = var.node_count
+  nsg_ids = local.nsg_id == "" ? [] : [local.nsg_id]
   time_zone               = var.time_zone
   db_system_options {
 

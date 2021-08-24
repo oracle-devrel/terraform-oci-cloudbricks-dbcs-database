@@ -52,6 +52,7 @@ hostname                        = "MY_HOSTNAME"
 data_storage_size_in_gb         = "2048"
 license_model                   = "BRING_YOUR_OWN_LICENSE"
 node_count                      = "2"
+dbcs_nsg_name                   = "MY_NSG"
 db_edition                      = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
 time_zone                       = "MY_CONTINENT/MY_CITY"
 auto_backup_enabled             = true
@@ -66,6 +67,7 @@ auto_backup_window_utc          = "08:00AM-10:00AM_UTC"
 - Variable `license_model` must be either `BRING_YOUR_OWN_LICENSE` or `LICENSE_INCLUDED`
 - Variable `db_edition` is the Oracle Database Edition that applies to all the databases on the DB system. Exadata DB systems and 2-node RAC DB systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.
 - Variable `data_storage_size_in_gb` must be one of the following: 256, 512, 1024, 2048, 4096, 6144, 8192, 10240, 12288, 14336, 16384, 18432, 20480, 22528, 24576, 26624, 28672, 30720, 32768, 34816, 36864, 38912, 40960.
+- Variable `dbcs_nsg_name` is an optional network security group that can be attached.
 
 
 ### Sample provider
@@ -115,6 +117,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [oci_database_db_system.DBSystem](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/database_db_system) | resource |
+| [oci_core_network_security_groups.NSG](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_network_security_groups) | data source |
 | [oci_core_private_ip.DBSCANIP](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ip) | data source |
 | [oci_core_private_ip.DBVIPIP](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_private_ip) | data source |
 | [oci_core_subnets.SUBNET](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnets) | data source |
@@ -149,6 +152,7 @@ No modules.
 | <a name="input_dbcs_instance_compartment_id"></a> [dbcs\_instance\_compartment\_id](#input\_dbcs\_instance\_compartment\_id) | Defines the compartment OCID where the infrastructure will be created | `string` | `""` | no |
 | <a name="input_dbcs_instance_compartment_name"></a> [dbcs\_instance\_compartment\_name](#input\_dbcs\_instance\_compartment\_name) | Defines the compartment name where the infrastructure will be created | `string` | `""` | no |
 | <a name="input_dbcs_network_compartment_name"></a> [dbcs\_network\_compartment\_name](#input\_dbcs\_network\_compartment\_name) | Defines the compartment where the Network is currently located | `any` | n/a | yes |
+| <a name="input_dbcs_nsg_name"></a> [dbcs\_nsg\_name](#input\_dbcs\_nsg\_name) | Display Name of an optional Network Security Group | `string` | `""` | no |
 | <a name="input_fault_domains"></a> [fault\_domains](#input\_fault\_domains) | Fault Domains | `string` | `""` | no |
 | <a name="input_fingerprint"></a> [fingerprint](#input\_fingerprint) | API Key Fingerprint for user\_ocid derived from public API Key imported in OCI User config | `any` | n/a | yes |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | DB Hostname | `any` | n/a | yes |
